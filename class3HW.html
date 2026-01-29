@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <h3>Add Items to Your Shopping List</h3>
+
+    <form id="myForm">
+        <input id="myInput" type="text" placeholder="Enter item name">
+        <button>Add</button>
+    </form>
+
+    <h3>Shopping List</h3>
+    <ul id="myItem"></ul>
+
+    <script>
+        var myForm = document.getElementById("myForm");
+        var myInput = document.getElementById("myInput");
+        var myItem = document.getElementById("myItem");
+
+        myForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            createItem(myInput.value);
+        });
+
+        function createItem(inputItems) {
+            if (inputItems === "") return;
+
+            var items = `<li>
+                ${inputItems}
+                <button onclick="deleteElement(this)">Remove</button>
+            </li>`;
+
+            myItem.insertAdjacentHTML("beforeend", items);
+            myInput.value = "";
+            myInput.focus();
+        }
+
+        function deleteElement(ElementToDelete) {
+            ElementToDelete.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
